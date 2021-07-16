@@ -1,0 +1,543 @@
+{
+	"info": {
+		"_postman_id": "450770a4-760b-4558-9877-5e652093e182",
+		"name": "Одно из тестовых заданий",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Авторизация",
+			"item": [
+				{
+					"name": "Авторизация - 200",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody)\r",
+									"\r",
+									"pm.environment.set(\"user-id\", jsonData.profiles[0].user_id);\r",
+									"pm.environment.set(\"profile-id\", jsonData.profiles[0].id);\r",
+									"pm.environment.set(\"auth-token\", jsonData.authentication_token);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "accept",
+								"value": "application/json; charset=UTF-8"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "udacl=resh"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\":\"{{login}}\",\r\n    \"password_hash\":\"{{password_hash}}\",\r\n    \"password_hash2\":\"{{password_hash2}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}sessions",
+							"host": [
+								"{{url}}sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Авторизация - 401",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "accept",
+								"value": "application/json; charset=UTF-8"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "udacl=resh"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\":\"123\",\r\n    \"password_hash\":\"{{password_hash}}\",\r\n    \"password_hash2\":\"{{password_hash2}}\"\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}sessions",
+							"host": [
+								"{{url}}sessions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Авторизация - 500",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 500\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "accept",
+								"value": "application/json; charset=UTF-8"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "udacl=resh"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}sessions",
+							"host": [
+								"{{url}}sessions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "material/register",
+			"item": [
+				{
+					"name": "material/register - 201",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var jsonData = JSON.parse(responseBody)\r",
+									"\r",
+									"pm.environment.set(\"uuid\", jsonData[0].material_select.material_item.uuid);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "accept",
+								"value": "application/json; charset=UTF-8"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "udacl=resh"
+							},
+							{
+								"key": "user-id",
+								"value": "{{user-id}}",
+								"type": "text"
+							},
+							{
+								"key": "profile-id",
+								"value": "{{profile-id}}",
+								"type": "text"
+							},
+							{
+								"key": "auth-token",
+								"value": "{{auth-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"materials\": [\r\n    {\r\n      \"partner_id\": {{partner_id}},\r\n      \"material_id\": \"{{material_id}}\"\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}materials/register",
+							"host": [
+								"{{url}}materials"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "material/register - 400",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "accept",
+								"value": "application/json; charset=UTF-8"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "udacl=resh"
+							},
+							{
+								"key": "user-id",
+								"value": "{{user-id}}",
+								"type": "text"
+							},
+							{
+								"key": "profile-id",
+								"value": "{{profile-id}}",
+								"type": "text"
+							},
+							{
+								"key": "auth-token",
+								"value": "{{auth-token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"materials\": [\r\n    {\r\n      \"partner_id\": {{partner_id}},\r\n      \"material_id\": 1\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}materials/register",
+							"host": [
+								"{{url}}materials"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "materials/{uuid}",
+			"item": [
+				{
+					"name": "materials/{uuid} - 200",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "accept",
+								"value": "application/json; charset=UTF-8"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "udacl=resh"
+							},
+							{
+								"key": "user-id",
+								"value": "{{user-id}}",
+								"type": "text"
+							},
+							{
+								"key": "profile-id",
+								"value": "{{profile-id}}",
+								"type": "text"
+							},
+							{
+								"key": "auth-token",
+								"value": "{{auth-token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}materials/{{uuid}}",
+							"host": [
+								"{{url}}materials"
+							],
+							"path": [
+								"{{uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "materials/{uuid} - 401",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "accept",
+								"value": "application/json; charset=UTF-8"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "udacl=resh"
+							},
+							{
+								"key": "user-id",
+								"value": "{{user-id}}",
+								"type": "text"
+							},
+							{
+								"key": "profile-id",
+								"value": "{{profile-id}}",
+								"type": "text"
+							},
+							{
+								"key": "auth-token",
+								"value": "{{auth-token}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{url}}materials/{{uuid}}",
+							"host": [
+								"{{url}}materials"
+							],
+							"path": [
+								"{{uuid}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "materials/{uuid} - 404",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "cache-control",
+								"value": "no-cache"
+							},
+							{
+								"key": "accept",
+								"value": "application/json; charset=UTF-8"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "udacl=resh"
+							},
+							{
+								"key": "user-id",
+								"value": "{{user-id}}",
+								"type": "text"
+							},
+							{
+								"key": "profile-id",
+								"value": "{{profile-id}}",
+								"type": "text"
+							},
+							{
+								"key": "auth-token",
+								"value": "{{auth-token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}materials/?uuid={{uuid}}",
+							"host": [
+								"{{url}}materials"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "uuid",
+									"value": "{{uuid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

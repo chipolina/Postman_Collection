@@ -1,0 +1,59 @@
+{
+	"id": "c4ba5afd-27ef-4233-9e11-b09710a11799",
+	"name": "Окружение к тестовому заданию",
+	"values": [
+		{
+			"key": "url",
+			"value": "https://uchebnik-dev.mos.ru/api/",
+			"enabled": true
+		},
+		{
+			"key": "partner_id",
+			"value": "2",
+			"enabled": true
+		},
+		{
+			"key": "material_id",
+			"value": "ids=1838434",
+			"enabled": true
+		},
+		{
+			"key": "login",
+			"value": "lamber1",
+			"enabled": true
+		},
+		{
+			"key": "password_hash",
+			"value": "cb2282cec266ef2eb69e88239adb2dfc",
+			"enabled": true
+		},
+		{
+			"key": "password_hash2",
+			"value": "8b9f23ee94c0d34ff0c401dbeaca4d52",
+			"enabled": true
+		},
+		{
+			"key": "user-id",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "profile-id",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "auth-token",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "uuid",
+			"value": "",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2021-06-27T15:55:58.348Z",
+	"_postman_exported_using": "Postman/8.7.0"
+}
