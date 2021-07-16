@@ -1,7 +1,7 @@
 # Postman_Collection
 
 В данной коллекции Postman представлены несколько основных методов, созданных по определенному ТЗ.
-Для загрузки файлов необходимо нажать `Import` в основном окне Postman
+Для загрузки файлов необходимо нажать `Import` в основном окне Postman <br>
 ![image](https://user-images.githubusercontent.com/50044846/125923662-d2a2aa1d-f0fe-4f3e-90c5-ffdb655060e2.png)
 
 
